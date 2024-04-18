@@ -19,7 +19,8 @@
           <div class="card">
             <div class="card-body">
 
-                <form action="" method="post">
+                <form action="{{route('create.user')}}" method="post">
+                  @csrf
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama </label>
                 <div class="col-sm-12 col-md-7">
@@ -38,8 +39,8 @@
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Role</label>
                 <div class="col-sm-12 col-md-7">
                   <select name="role" id="role" class="custom-select w-100 mt-3">
-                    <option value="admin">Admin</option>
-                    <option value="petugas">petugas</option>
+                    <option value="1">Admin</option>
+                    <option value="2">petugas</option>
                 </select>
                 </div>
               </div>

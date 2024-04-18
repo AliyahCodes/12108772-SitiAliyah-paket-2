@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('detail_transaksis', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->enum('role', ['admin', 'staff']);
-            $table->rememberToken();
+            $table->foreignId('produk_id');
+            $table->foreignId('transaksi_id');
+            $table->foreignId('qty');
+            $table->foreignId('produk_name');
+            $table->foreignId('subtotal');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('detail_transaksis');
     }
 };

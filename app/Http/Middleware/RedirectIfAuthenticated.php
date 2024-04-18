@@ -27,4 +27,12 @@ class RedirectIfAuthenticated
 
         return $next($request);
     }
+
+    // if(Auth::user()->role != 'administrator')
+    // {
+    //     return redirect('/petugas')->withErrors('error','kamu bukan admin');
+    // }
+
+    // return $next($request);x
+
 }

@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
-@section('title', 'Data Produk')
+@section('title', 'Data Pelanggan')
 
-@section('text', 'Edit data user')
+@section('text', 'Edit data Pelanggan')
     
 
 @section('content')
@@ -10,9 +10,9 @@
 
 <section class="section">
     <div class="section-body">
-      <h2 class="section-title">Edit data user</h2>
+      <h2 class="section-title">Edit data Pelanggan</h2>
       <p class="section-lead">
-        Di halaman ini Anda dapat melakukan update data user    </p>
+        Di halaman ini Anda dapat melakukan update data Pelanggan    </p>
 
       <div class="row">
         <div class="col-12">
@@ -29,35 +29,26 @@
 
            
               <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Email</label>
+                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Alamat</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="email" name="" value="" class="form-control inputtags">
+                  <input type="text" name="" value="" class="form-control inputtags">
                 </div>
               </div>
 
               <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Role</label>
+                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Telepon</label>
                 <div class="col-sm-12 col-md-7">
-                  <select name="role" id="role" class="custom-select w-100 mt-3">
-                    <option value="admin">Admin</option>
-                    <option value="petugas">petugas</option>
-                </select>
+                  <input type="text" name="" value="" class="form-control inputtags">
                 </div>
               </div>
 
-              <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Password</label>
-                <div class="col-sm-12 col-md-7">
-                  <input type="password" name="" class="form-control">
-                </div>
-              </div>
 
           
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                 <div class="col-sm-12 col-md-7">
                   <button type="submit" class="btn btn-primary">Update</button>
-                  <a href="/User" class="btn btn-primary">Kembali</a>
+                  <a href="/Pelanggan" class="btn btn-primary">Kembali</a>
                 </div>
               </div>
 

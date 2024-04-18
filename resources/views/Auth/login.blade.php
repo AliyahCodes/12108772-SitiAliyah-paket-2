@@ -62,13 +62,6 @@
                   </div>
 
                   <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                      <label class="custom-control-label" for="remember-me">Remember Me</label>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                       Login
                     </button>
@@ -101,5 +94,15 @@
   <!-- Template JS File -->
   <script src="{{asset('admin/js/scripts.js')}}"></script>
   <script src="{{asset('admin/js/custom.js')}}"></script>
+
+  {{-- @if($message = Session::get('error'))
+  <script>
+      Swal.fire({
+      icon: "error",
+      title: "Oops",
+      text: "{{$message}}",
+      });
+  </script>
+  @endif --}}
 </body>
 </html>

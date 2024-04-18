@@ -12,29 +12,47 @@
             <div class="card">
                 <div class="card-body">
 
-                    <div class="row mt-2">
-                        <div class="col-md-4">
-                            <label for="">ID</label>
-                        </div>
-                        <div class="col-md-8">
-                            <form method="GET">
+                    <form method="GET">
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for="">ID Produk</label>
+                            </div>
+                            <div class="col-md-8">
                                 <div class="d-flex">
                                     <select name="produk_id" class="form-control" id="produk_id">
                                         <option value="">----</option>
-                                        <option value="" ></option>
+                                            <option value=""></option>
+                                        
                                     </select>
-                                    <button type="submit" class="btn btn-primary">pilih</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                    
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for="">ID Pelanggan</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="d-flex">
+                                    <select name="pelanggan_id" class="form-control" id="pelanggan_id">
+                                        <option value="">----</option>
+                                            <option value=""></option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary ml-2">Pilih</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
 
-                    <form action="/transaksi/detail/create" method="post">
+                    <form action="" method="post">
                         @csrf
                         <input type="hidden" name="penjualan_id" value="">
                         <input type="hidden" name="produk_id" value="">
                         <input type="hidden" name="produk_name" value="">
                         <input type="hidden" name="subtotal" value="">
+                        <input type="hidden" name="pelanggan_id" value="">
+
                         
 
 
@@ -94,7 +112,7 @@
 
                         </div>
                         <div class="col-md-8">
-                            <a href="/pembelian" class="btn btn-info"><i class="fas fa-arrow-left"></i>Kembali</a>
+                            <a href="/Transaksi" class="btn btn-info"><i class="fas fa-arrow-left"></i>Kembali</a>
                             <button type="submit" class="btn btn-primary">Tambah<i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -128,7 +146,7 @@
                         <hr>
                     </table>
 
-                    <a href="/transaksi/create/post" class="btn btn-info"><i class="fas fa-arrow-right"></i>selanjutnya</a>
+                    <a href="" class="btn btn-info"><i class="fas fa-arrow-right"></i>selanjutnya</a>
 
                 </div>
             </div>

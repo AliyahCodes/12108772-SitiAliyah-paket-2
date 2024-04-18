@@ -25,3 +25,5 @@ $("#setting-form").submit(function() {
   }, 3000);
   return false;
 });
+
+// {{-- ?produk_id={{ request('produk_id') }}&act=min&qty={{ $qty }} --}}

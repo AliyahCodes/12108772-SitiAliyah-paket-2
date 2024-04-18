@@ -8,7 +8,6 @@
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{asset('admin/modules/bootstrap/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/modules/fontawesome/css/all.min.css')}}">
-  {{-- ?produk_id={{ request('produk_id') }}&act=min&qty={{ $qty }} --}}
 
   <!-- CSS Libraries -->
   <link rel="stylesheet" href="{{asset('admin/modules/jqvmap/dist/jqvmap.min.css')}}">
@@ -70,6 +69,7 @@
               <li class="menu-header">Starter</li>
                 <li><a class="nav-link" href="/Produk"><i class="fas fa-columns"></i> <span>Produk</span></a></li>
                 <li><a class="nav-link" href="/Transaksi"><i class="fas fa-cart-plus"></i> <span>Transaksi</span></a></li>
+                <li><a class="nav-link" href="/Pelanggan"><i class="fas fa-user"></i> <span>Pelanggan</span></a></li>
                 <li><a class="nav-link" href="/User"><i class="fas fa-user"></i> <span>User</span></a></li>
               
               <li class="menu-header">Auth</li>

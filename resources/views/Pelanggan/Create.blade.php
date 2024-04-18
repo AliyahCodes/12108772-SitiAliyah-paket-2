@@ -1,17 +1,17 @@
 @extends('layouts.main')
 
-@section('title', 'Create User')
+@section('title', 'Create Pelanggan')
 
-@section('text', 'Tambah data User')
+@section('text', 'Tambah data Pelanggan')
     
 
 @section('content')
 
 <section class="section">
     <div class="section-body">
-      <h2 class="section-title">Tambah User Baru</h2>
+      <h2 class="section-title">Tambah Pelanggan Baru</h2>
       <p class="section-lead">
-        Di halaman ini Anda dapat menambahkan data user baru
+        Di halaman ini Anda dapat menambahkan data pelanggan baru
     </p>
 
       <div class="row">
@@ -23,31 +23,21 @@
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama </label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" name="name" placeholder="Masukan Nama" class="form-control">
+                  <input type="text"     placeholder="Masukan Nama" class="form-control">
                 </div>
               </div>
            
               <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Email</label>
+                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Alamat</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="email" name="email" placeholder="Masukan Email" class="form-control inputtags">
-                </div>
-              </div>
-              
-              <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Role</label>
-                <div class="col-sm-12 col-md-7">
-                  <select name="role" id="role" class="custom-select w-100 mt-3">
-                    <option value="admin">Admin</option>
-                    <option value="petugas">petugas</option>
-                </select>
+                  <input type="text" name="alamat" placeholder="Masukan Email" class="form-control inputtags">
                 </div>
               </div>
 
               <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Password</label>
+                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Telepon</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="password" name="password" placeholder="Masukan Password" class="form-control">
+                  <input type="text" name="telepon" placeholder="Masukan Password" class="form-control">
                 </div>
               </div>
 
@@ -56,7 +46,7 @@
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                 <div class="col-sm-12 col-md-7">
                   <button type="submit" class="btn btn-primary">Create</button>
-                  <a href="/User" class="btn btn-primary">Kembali</a>
+                  <a href="/Pelanggan" class="btn btn-primary">Kembali</a>
                 </div>
               </div>
 

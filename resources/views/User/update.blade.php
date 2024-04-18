@@ -41,19 +41,11 @@
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Role</label>
                 <div class="col-sm-12 col-md-7">
                   <select name="role" id="role" class="custom-select w-100 mt-3">
-                    <option value="admin">Admin</option>
-                    <option value="petugas">petugas</option>
+                    <option value="1">Admin</option>
+                    <option value="2">staff</option>
                 </select>
                 </div>
               </div>
-
-              <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Password</label>
-                <div class="col-sm-12 col-md-7">
-                  <input type="password" name="password" class="form-control">
-                </div>
-              </div>
-
           
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>

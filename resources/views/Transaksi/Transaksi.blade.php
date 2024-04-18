@@ -25,12 +25,13 @@
             <th style="text-align: center">Action</th>
           </tr>
 
+          @foreach ($data as $item)
           <tr>
-            <td><a href="#">INV-87320</a></td>
-            <td>jj</td>
-            <td>h</td>
-            <td>July 28, 2018</td>
-            <td>Aliyah</td>
+            <td>{{$loop->iteration}}</td>
+            <td>{{$item->pelanggan->nama_pelanggan}}</td>
+            <td>{{$item->tanggal_penjualan}}</td>
+            <td>{{$item->total_harga}}</td>
+            <td>{{$item->user->name}}</td>
             <td>
                 {{-- hapus untuk user saja --}}
               <a href="#" class="btn btn-danger">Hapus</a>
@@ -39,6 +40,8 @@
 
             </td>
           </tr>
+          @endforeach
+
         </table>
       </div>
     </div>

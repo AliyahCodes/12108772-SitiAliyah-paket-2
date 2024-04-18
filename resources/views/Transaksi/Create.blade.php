@@ -20,9 +20,10 @@
                             <div class="col-md-8">
                                 <div class="d-flex">
                                     <select name="produk_id" class="form-control" id="produk_id">
-                                        <option value="">----</option>
-                                            <option value=""></option>
-                                        
+                                        <option value="">--{{isset($p_detail) ? $p_detail->nama_produk : ''}}--</option>
+                                        @foreach ($produk as $item)
+                                            <option value="{{$item->id}}">{{$item->id}}.{{$item->nama_produk}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -35,8 +36,10 @@
                             <div class="col-md-8">
                                 <div class="d-flex">
                                     <select name="pelanggan_id" class="form-control" id="pelanggan_id">
-                                        <option value="">----</option>
-                                            <option value=""></option>
+                                        <option value="">--{{isset($pl) ? $pl->nama_pelanggan : ''}}--</option>
+                                        @foreach ($pelanggan as $item)
+                                           <option value="{{$item->id}}">{{$item->id}}.{{$item->nama_pelanggan}}</option>
+                                        @endforeach
                                     </select>
                                     <button type="submit" class="btn btn-primary ml-2">Pilih</button>
                                 </div>
@@ -45,14 +48,13 @@
                     </form>
                     
 
-                    <form action="" method="post">
+                    <form action="/transaksi/detail/create" method="post">
                         @csrf
-                        <input type="hidden" name="penjualan_id" value="">
-                        <input type="hidden" name="produk_id" value="">
-                        <input type="hidden" name="produk_name" value="">
-                        <input type="hidden" name="subtotal" value="">
-                        <input type="hidden" name="pelanggan_id" value="">
-
+                        <input type="hidden" name="transaksi_id" value="{{Request::segment(2)}}">
+                        <input type="hidden" name="produk_id" value="{{isset($p_detail) ? $p_detail->id : ''  }}">
+                        <input type="hidden" name="produk_name" value="{{isset($p_detail) ? $p_detail->nama_produk : '' }}">
+                        <input type="hidden" name="pelanggan_id" value="{{isset($pl) ? $pl->id : ''  }}">
+                        <input type="hidden" name="subtotal" value="{{$subtotal}}">
                         
 
 
@@ -61,7 +63,7 @@
                             <label for="">Nama Produk</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" value="" disabled class="form-control" name="" id="">
+                            <input type="text" value="{{isset($p_detail) ? $p_detail->nama_produk : ''}}" disabled class="form-control" name="nama_produk" id="">
                         </div>
                     </div>
 
@@ -72,7 +74,7 @@
                             <label for="">Stok</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" value="" disabled class="form-control" name="" id="">
+                            <input type="text" value="{{isset($p_detail) ? $p_detail->stok: ''}}" disabled class="form-control" name="stok" id="">
                         </div>
                     </div>
 
@@ -81,7 +83,7 @@
                             <label for="">Harga Satuan</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" value="" disabled class="form-control" name="harga" id="">
+                            <input type="text" value="{{isset($p_detail) ? $p_detail->harga: ''}}" disabled class="form-control" name="harga" id="">
                         </div>
                     </div>
 
@@ -89,11 +91,12 @@
                         <div class="col-md-4">
                             <label for="">Jumlah</label>
                         </div>
+
                         <div class="col-md-8">
                             <div class="d-flex">
-                                <a href="" class="btn btn-primary"><i class="fas fa-minus"></i></a>
-                                <input type="number" value="" id="qty" class="form-control" name="qty">
-                                <a href="" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                                <a href="?produk_id={{ request('produk_id') }}&act=min&qty={{ $qty }}" class="btn btn-primary"><i class="fas fa-minus"></i></a>
+                                <input type="number" value="{{$qty}}" id="qty" class="form-control" name="qty">
+                                <a href="?produk_id={{ request('produk_id') }}&act=plus&qty={{ $qty }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
                             </div>
                         </div>
                     </div>
@@ -103,7 +106,7 @@
 
                         </div>
                         <div class="col-md-8">
-                            <h5>Subtotal: Rp. </h5>
+                            <h5>Subtotal: Rp. {{$subtotal}} </h5>
                         </div>
                     </div>
 
@@ -133,15 +136,17 @@
                             <th>subtotal</th>
                             <th>action</th>
                         </tr>
+                        @foreach ($detail as $item)
                         <tr>
-                            <td>Laptop</td>
-                            <td>12000</td>
-                            <td>2</td>
-                            <td>14000</td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$item->produk_name}}</td>
+                            <td>{{$item->qty}}</td>
+                            <td>{{$item->subtotal}}</td>
                             <td>
                                 <a href="" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
+                        @endforeach
 
                         <hr>
                     </table>

@@ -9,10 +9,6 @@ class Produk extends Model
 {
     use HasFactory;
 
-    protected $fillabel =[
-        'nama_produk',
-        'stok',
-        'harga',
-        'image'
-    ];
+    protected $guarded = ['id']; 
+
 }

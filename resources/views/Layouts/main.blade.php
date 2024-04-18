@@ -62,10 +62,20 @@
               <a href="index.html">Kasir</a>
             </div>
             <ul class="sidebar-menu">
+              @if (Auth::user()->role == 1) 
+                  
               <li class="menu-header">Dashboard</li>
               <li class="dropdown">
-                <a href="/Admin/Dashboard"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a href="dashboard"><i class="fas fa-fire"></i><span>Dashboard</span></a>
               </li>
+              @else()
+              <li class="menu-header">Dashboard</li>
+              <li class="dropdown">
+                <a href="staf"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+              </li>
+              @endif
+
+
               <li class="menu-header">Starter</li>
                 <li><a class="nav-link" href="/Produk"><i class="fas fa-columns"></i> <span>Produk</span></a></li>
                 <li><a class="nav-link" href="/Transaksi"><i class="fas fa-cart-plus"></i> <span>Transaksi</span></a></li>
@@ -73,7 +83,7 @@
                 <li><a class="nav-link" href="/User"><i class="fas fa-user"></i> <span>User</span></a></li>
               
               <li class="menu-header">Auth</li>
-              <li><a class="nav-link" href="blank.html"><i class="fas fa-arrow-down"></i> <span>Logout</span></a></li>
+              <li><a class="nav-link" href="/logout"><i class="fas fa-arrow-down"></i> <span>Logout</span></a></li>
         </div>
   
         <!-- Main Content -->

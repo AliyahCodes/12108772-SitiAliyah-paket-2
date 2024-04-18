@@ -26,4 +26,3 @@ $("#setting-form").submit(function() {
   return false;
 });
 
-// {{-- ?produk_id={{ request('produk_id') }}&act=min&qty={{ $qty }} --}}

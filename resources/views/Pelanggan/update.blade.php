@@ -20,10 +20,12 @@
             <div class="card-body">
 
                 <form action="" method="post">
+                  @method('PATCH')
+                  @csrf
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" name="" value="" class="form-control">
+                  <input type="text" name="nama_pelanggan" value="{{$data->nama_pelanggan}}" class="form-control">
                 </div>
               </div>
 
@@ -31,18 +33,16 @@
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Alamat</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" name="" value="" class="form-control inputtags">
+                  <input type="text" name="alamat" value="{{$data->alamat}}" class="form-control inputtags">
                 </div>
               </div>
 
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Telepon</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" name="" value="" class="form-control inputtags">
+                  <input type="text" name="telepon" value="{{$data->telepon}}" class="form-control inputtags">
                 </div>
               </div>
-
-
           
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>

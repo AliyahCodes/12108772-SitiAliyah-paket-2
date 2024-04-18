@@ -32,7 +32,7 @@
             <td>{{$item->email}}</td>
             <td>{{$item->role}}</td>
             <td>
-              <a href="/User/edit/{{$item->id}}" class="btn btn-primary">Edit</a>
+              <a href="/User/edit/{{$item->id}}" class="btn btn-primary mt-2">Edit</a>
 
             <form action="/User/delete/{{$item->id}}" method="post">
                 @method('DELETE')

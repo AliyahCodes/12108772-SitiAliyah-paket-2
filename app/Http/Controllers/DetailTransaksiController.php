@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetailTransaksi;
+use App\Models\Produk;
+use App\Models\Pelanggan;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use App\Models\DetailTransaksi;
 
 class DetailTransaksiController extends Controller
 {
@@ -18,9 +21,9 @@ class DetailTransaksiController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -28,8 +31,56 @@ class DetailTransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $produk_id = $request->produk_id;
+        $transaksi_id = $request->transaksi_id;
+        $pelanggan_id = $request->pelanggan_id;
+
+        $td = DetailTransaksi::whereProdukId($produk_id)->whereTransaksiId($transaksi_id)->first();
+
+        $pelanggan = Pelanggan::find($pelanggan_id);
+        $transaksi = Transaksi::find($transaksi_id);
+        $produk = Produk::find($produk_id);
+
+        if($td == null){
+        $data = [
+            'produk_id' => $produk_id,
+            'produk_name' => $request->produk_name,
+            'transaksi_id' => $transaksi_id,
+            'qty' => $request->qty,
+            'subtotal' => $request->subtotal
+        ];  
+             DetailTransaksi::create($data);
+
+            $dt = [
+                'total_harga' => $request->qty + $transaksi->total_harga,
+            ];
+            $transaksi->update($dt);
+
+            if ($pelanggan) {
+                $transaksi->pelanggan_id = $pelanggan->id;
+                $transaksi->save();
+            }
+
+            $stok = [
+                'stok' => $produk->stok - $request->qty
+            ];
+            $produk->update($stok);
+
+        }else {
+            $data = [
+                'qty' => $request->qty + $td->qty,
+                'subtotal' => $request->subtotal + $td->subtotal
+            ];
+            $td->update($data);
+
+            $dt = [
+                'total_harga' => $request->qty + $transaksi->total_harga,
+            ];
+            $transaksi->update($dt);
+        }
+        return redirect('/Transaksi/' . $transaksi->id. '/edit');
     }
+    
 
     /**
      * Display the specified resource.
@@ -61,5 +112,12 @@ class DetailTransaksiController extends Controller
     public function destroy(DetailTransaksi $detailTransaksi)
     {
         //
+    }
+
+    public function print($id)
+    {
+        $detail = DetailTransaksi::whereTransaksiId($id)->get();
+        return view('Transaksi.PrintTransaksi');
+
     }
 }

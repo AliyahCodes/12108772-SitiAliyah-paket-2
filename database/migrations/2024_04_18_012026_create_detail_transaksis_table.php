@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('produk_id');
             $table->foreignId('transaksi_id');
-            $table->foreignId('qty');
-            $table->foreignId('produk_name');
-            $table->foreignId('subtotal');
+            $table->string('qty');
+            $table->string('produk_name');
+            $table->string('subtotal');
             $table->timestamps();
         });
     }

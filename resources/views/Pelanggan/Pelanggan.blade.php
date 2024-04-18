@@ -20,22 +20,29 @@
           <tr>
             <th>No</th>
             <th>Nama</th>
-            <th>Email</th>
-            <th>Role</th>
+            <th>alamat</th>
+            <th>Telepon</th>
             <th>Action</th>
           </tr>
 
+          @foreach ($data as $item)
           <tr>
-            <td><a href="#">INV-87320</a></td>
-            <td>jj</td>
-            <td>h</td>
-            <td>July 28, 2018</td>
+            <td>{{$loop->iteration}}</td>
+            <td>{{$item->nama_pelanggan}}</td>
+            <td>{{$item->alamat}}</td>
+            <td>{{$item->telepon}}</td>
             <td>
-              <a href="/Pelanggan/edit" class="btn btn-primary">Edit</a>
-              <a href="" class="btn btn-danger">Hapus</a>
+              <a href="/Pelanggan/edit/{{$item->id}}" class="btn btn-primary mt-2">Edit</a>
+              <form action="/Pelanggan/delete/{{$item->id}}" method="post">
+                @method('DELETE')
+                @csrf
+                <div class="delete">
+                  <button type="submit" class="btn btn-danger mt-2">Hapus</button>
+                </div>
 
             </td>
           </tr>
+          @endforeach
         </table>
       </div>
     </div>

@@ -20,24 +20,26 @@
             <div class="card-body">
 
                 <form action="" method="post">
+                  @method('PATCH')
+                  @csrf
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama Produk</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" name="nama_produk" value="" disabled class="form-control">
+                  <input type="text" name="nama_produk" value="{{$data->nama_produk}}" disabled class="form-control">
                 </div>
               </div>
            
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Harga</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" name="harga" value="" disabled class="form-control inputtags">
+                  <input type="text" name="harga" value="{{$data->harga}}" disabled class="form-control inputtags">
                 </div>
               </div>
 
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Stok</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" name="stok" value="" class="form-control">
+                  <input type="text" name="stok" value="{{$data->stok}}" class="form-control">
                 </div>
               </div>
 

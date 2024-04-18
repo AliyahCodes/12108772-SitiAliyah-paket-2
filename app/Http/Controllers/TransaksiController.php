@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Produk;
+use App\Models\Pelanggan;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use App\Models\DetailTransaksi;
 
 class TransaksiController extends Controller
 {
@@ -12,7 +16,8 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        $data = Transaksi::with(['pelanggan', 'user'])->get();
+        return view('Transaksi.Transaksi', compact('data'));
     }
 
     /**
@@ -20,7 +25,15 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'pelanggan_id' => 0,
+            'tanggal_penjualan'=> Carbon::now()->toDateString(),
+            'total_harga' => 0,
+        ];
+
+        $transaksi = Transaksi::create($data);
+        return redirect('/Transaksi/'.$transaksi->id.'/edit');
+
     }
 
     /**
@@ -50,9 +63,38 @@ class TransaksiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Transaksi $transaksi)
+    public function update(Request $request, Transaksi $transaksi, $id)
     {
-        //
+        $produk = Produk::get();
+        $pelanggan = Pelanggan::get();
+
+        $detail = DetailTransaksi::whereTransaksiId($id)->get();
+
+        $produk_id = $request['produk_id'];
+        $p_detail = Produk::find($produk_id);
+
+        $pelanggan_id = $request['pelanggan_id'];
+        $pl = Pelanggan::find($pelanggan_id);
+
+        $act = request('act');
+        $qty =request('qty');
+            if($qty == 'min'){
+                if($qty <= 1){
+                    $qty = 1;
+                }else {
+                    $qty = $qty - 1;
+                }
+            }else {
+
+                $qty = $qty + 1;
+            }
+
+            $subtotal = 0;
+                if($p_detail) {
+                    $subtotal = $qty * $p_detail->harga;
+                }
+
+        return view('Transaksi.Create', compact('produk', 'p_detail','pelanggan','pl', 'qty', 'subtotal', 'detail'));
     }
 
     /**

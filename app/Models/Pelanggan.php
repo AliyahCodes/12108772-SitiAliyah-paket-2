@@ -9,9 +9,5 @@ class Pelanggan extends Model
 {
     use HasFactory;
 
-    protected $fillabel =[
-        'nama_pelanggan',
-        'alamat',
-        'telepon'
-    ];
+    protected $guarded = ['id']; 
 }

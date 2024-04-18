@@ -50,7 +50,6 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
             'role' => 'required',
 
         ]);
@@ -58,7 +57,6 @@ class UserController extends Controller
         User::where('id', '=', $id)->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
             'role' => $request->role,
         ]);
 

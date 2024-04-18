@@ -26,19 +26,28 @@
             <th>Action</th>
           </tr>
 
+          @foreach ($data as $item)
           <tr>
-            <td><a href="#">INV-87320</a></td>
-            <td class="font-weight-600">Ardian Rahardiansyah</td>
-            <td>jj</td>
-            <td>h</td>
-            <td>July 28, 2018</td>
+            <td>{{$loop->iteration}}</td>
             <td>
-              <a href="/produk/edit" class="btn btn-primary">Edit</a>
-              <a href="/Produk/stok" class="btn btn-warning">Edit stok</a>
-              <a href="" class="btn btn-danger mt-2">Hapus</a>
-
+              <img alt="image" src="{{asset('storage/image/'.$item->image)}}" width="75px">
+            </td>
+            <td>{{$item->nama_produk}}</td>
+            <td>{{$item->harga}}</td>
+            <td>{{$item->stok}}</td>
+            <td>
+              <a href="/Produk/edit/{{$item->id}}" class="btn btn-primary mt-2">Edit</a>
+              <a href="/Produk/stok/{{$item->id}}" class="btn btn-warning mt-2">Edit stok</a>
+              <form action="/Produk/delete/{{$item->id}}" method="post">
+                @method('DELETE')
+                @csrf
+                <div class="delete">
+                  <button type="submit" class="btn btn-danger mt-2">Hapus</button>
+                </div>
+            </form>
             </td>
           </tr>
+          @endforeach
         </table>
       </div>
     </div>

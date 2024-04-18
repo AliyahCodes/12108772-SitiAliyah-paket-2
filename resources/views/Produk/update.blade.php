@@ -20,34 +20,33 @@
             <div class="card-body">
 
                 <form action="" method="post">
+                  @method('PATCH')
+                  @csrf
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama Produk</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" name="" disabled class="form-control">
+                  <input type="text" name="nama_produk" value="{{$data->nama_produk}}"  class="form-control">
                 </div>
               </div>
 
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Gambar</label>
                 <div class="col-sm-12 col-md-7">
-                  <div id="image-preview" class="image-preview">
-                    <label for="image-upload" id="image-label">Choose File</label>
-                    <input type="file" name="image" disabled id="image-upload" />
+                    <input type="file" name="cover" id="image-upload" />
                   </div>
-                </div>
               </div>
            
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Harga</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" name="" disabled class="form-control inputtags">
+                  <input type="text" name="harga" value="{{$data->harga}}"  class="form-control inputtags">
                 </div>
               </div>
 
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Stok</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" name="" class="form-control">
+                  <input type="text" name="stok" disabled value="{{$data->stok}}" class="form-control">
                 </div>
               </div>
 

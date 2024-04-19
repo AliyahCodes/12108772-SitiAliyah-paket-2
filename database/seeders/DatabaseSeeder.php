@@ -28,10 +28,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('aliyah'),
         ]);
 
-        Pelanggan::create([
-            'nama_pelanggan'=> 'Azura',
-            'alamat' => 'Jakarta',
-            'telepon' => '08975345787',
-        ]);
+
     }
 }

@@ -80,7 +80,10 @@
                 <li><a class="nav-link" href="/Produk"><i class="fas fa-columns"></i> <span>Produk</span></a></li>
                 <li><a class="nav-link" href="/Transaksi"><i class="fas fa-cart-plus"></i> <span>Transaksi</span></a></li>
                 <li><a class="nav-link" href="/Pelanggan"><i class="fas fa-user"></i> <span>Pelanggan</span></a></li>
+
+                @if (Auth::user()->role != 2) 
                 <li><a class="nav-link" href="/User"><i class="fas fa-user"></i> <span>User</span></a></li>
+                @endif
               
               <li class="menu-header">Auth</li>
               <li><a class="nav-link" href="/logout"><i class="fas fa-arrow-down"></i> <span>Logout</span></a></li>

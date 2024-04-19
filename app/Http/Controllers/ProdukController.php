@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -16,6 +17,14 @@ class ProdukController extends Controller
         return view('Produk.Produk', compact('data'));
     }
 
+    public function search(Request $request)
+    {
+        $searchQuery = $request->input('query');
+        $data = Produk::where('nama_produk', 'like', "%$searchQuery%")->get();
+
+        return  view('Produk.Produk', compact('data'));
+    
+    }
     /**
      * Show the form for creating a new resource.
      */

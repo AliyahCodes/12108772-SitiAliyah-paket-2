@@ -7,6 +7,20 @@
 
 @section('content')
 
+ 
+
+<div class="form-grup">
+  <form action="{{ route('search') }}">
+      <input type="text" name="query" class="form-control float-right" placeholder="Search by nama produk">
+      <div class="input-grup">
+        <button type="submit" class="btn btn-default">
+              <i class="fas fa-search"></i>
+          </button>
+      </div>
+  </form>
+</div>
+
+
 <div class="card">
     <div class="card-header">
       <h4>Produk</h4>

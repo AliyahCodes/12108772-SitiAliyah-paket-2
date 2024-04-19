@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('Pelanggan/delete/{id}', [PelangganController::class, 'destroy']);
 
     Route::get('Produk', [ProdukController::class, 'index']);
+    Route::get('search', [ProdukController::class, 'search'])->name('search');
+
     Route::get('Produk/create', [ProdukController::class, 'create']);
     Route::post('Produk/create', [ProdukController::class, 'store'])->name('create.Produk');
     Route::get('Produk/edit/{id}', [ProdukController::class, 'edit']);

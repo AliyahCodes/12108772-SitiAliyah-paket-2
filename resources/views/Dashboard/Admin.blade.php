@@ -18,7 +18,7 @@
               <h4>Total Orders</h4>
             </div>
             <div class="card-body">
-              59
+              3
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@
               <h4>Balance</h4>
             </div>
             <div class="card-body">
-              $187,13
+              10
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@
               <h4>Sales</h4>
             </div>
             <div class="card-body">
-              4,732
+            6
             </div>
           </div>
         </div>

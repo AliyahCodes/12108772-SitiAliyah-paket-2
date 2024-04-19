@@ -19,7 +19,7 @@
           <div class="card">
             <div class="card-body">
 
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                   @method('PATCH')
                   @csrf
               <div class="form-group row mb-4">

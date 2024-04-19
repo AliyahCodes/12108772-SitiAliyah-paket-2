@@ -59,13 +59,14 @@ Route::middleware('auth')->group(function () {
     Route::get('Transaksi', [TransaksiController::class, 'index']);
     Route::get('transaksi/create', [TransaksiController::class, 'create']);
     Route::get('Transaksi/{id}/edit', [TransaksiController::class, 'update']);
-    Route::get('transaksi/detail', [TransaksiController::class, 'detail']);
+    Route::delete('Transaksi/delet/{id}', [TransaksiController::class, 'destroy']);
 
 
-    
+
+    Route::get('transaksi/detail/{$id}', [DetailTransaksiController::class, 'detail']);
     Route::post('transaksi/detail/create', [DetailTransaksiController::class, 'store']);
     Route::delete('transaksi/delete/{id}', [DetailTransaksiController::class, 'destroy']);
-    Route::get('transaksi/print/{$id}', [DetailTransaksiController::class, 'print']);
+    Route::get('transaksi/print/{id}', [DetailTransaksiController::class, 'print']);
 
 
 

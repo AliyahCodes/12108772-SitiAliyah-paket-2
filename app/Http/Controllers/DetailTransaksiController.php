@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Produk;
 use App\Models\Pelanggan;
 use App\Models\Transaksi;
@@ -51,8 +52,9 @@ class DetailTransaksiController extends Controller
         ];  
              DetailTransaksi::create($data);
 
-            $dt = [
-                'total_harga' => $request->qty + $transaksi->total_harga,
+             $dt = [
+                'total_harga' => $request->subtotal + $transaksi->total_harga,
+                
             ];
             $transaksi->update($dt);
 
@@ -74,7 +76,7 @@ class DetailTransaksiController extends Controller
             $td->update($data);
 
             $dt = [
-                'total_harga' => $request->qty + $transaksi->total_harga,
+                'total_harga' => $request->subtotal + $transaksi->total_harga,
             ];
             $transaksi->update($dt);
         }
@@ -109,15 +111,44 @@ class DetailTransaksiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DetailTransaksi $detailTransaksi)
+    public function destroy(DetailTransaksi $detailTransaksi, $id)
     {
-        //
+        $dt = DetailTransaksi::find($id);
+
+        $transaksi = Transaksi::find($dt->transaksi_id);
+        $data = [ 
+            'total_harga' => $transaksi->total_harga - $dt->subtotal,
+        ];
+        $transaksi->update($data);
+
+        $produk = Produk::find($dt->produk_id);
+        $data = [ 
+            'stok' => $produk->stok + $dt->qty,
+        ];
+        $produk->update($data);
+
+        $dt->delete();
+
+        return redirect()->back()->with('success', 'berhasil menghapus data!');
     }
 
     public function print($id)
     {
-        $detail = DetailTransaksi::whereTransaksiId($id)->get();
-        return view('Transaksi.PrintTransaksi');
+        $data = Transaksi::with('pelanggan')->find($id);
+        $detail_transaksi = DetailTransaksi::with('produk')->whereTransaksiId($id)->get();
+        $pelanggan = $data->pelanggan;
+
+        return view('Transaksi.PrintTransaksi', compact('detail_transaksi','data','pelanggan'));
+
+    }
+
+    public function detail($id)
+    {
+        $data = Transaksi::with('pelanggan')->find($id);
+        $detail_transaksi = DetailTransaksi::with('produk')->whereTransaksiId($id)->get();
+        $pelanggan = $data->pelanggan;
+
+        return view('Transaksi.DetailTransaksi', compact('detail_transaksi','data','pelanggan'));
 
     }
 }

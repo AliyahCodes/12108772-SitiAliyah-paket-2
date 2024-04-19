@@ -8,6 +8,28 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="{{asset('admin/css/invoice.css')}}">
     <link rel="stylesheet" href="{{asset('admin/css/components.css')}}">
 
+   
+    <style>
+      /* Style untuk tampilan sebelum mencetak */
+      body {
+      width: 50%; /* Mengatur lebar body menjadi 50% dari lebar halaman */
+      margin: 0 auto; /* Pusatkan body di tengah halaman */
+      font-size: 12px; /* Ukuran font */
+    }
+
+        @media print {
+      body {
+      width: 50%; 
+      margin: 0 auto; 
+      font-size: 12px; 
+    }
+
+    .no-print {
+            display: none;
+        }
+
+    }
+  </style>
 
 <div class="section-body">
     <div class="invoice">
@@ -21,15 +43,16 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             <div class="row">
               <div class="col-md-6">
                 <address>
-                  <strong>Kasir:</strong><br>
+                  <strong>Kasir:
+                  </strong><br>
                 </address>
               </div>
               <div class="col-md-6 text-md-right">
                 <address>
                   <strong>Pelanggan:</strong><br>
-                  Nama<br>
-                   No telepon<br>
-                  Alamat<br>
+                  Nama : {{$data->pelanggan->nama_pelanggan}} <br>
+                   No telepon : {{$data->pelanggan->telepon}}<br>
+                  Alamat : {{$data->pelanggan->alamat}}<br>
                 </address>
               </div>
             </div>
@@ -37,7 +60,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             
               <div class="col-md-6 text-md-right">
                 <address>
-                  <strong>Order Date:</strong><br>
+                  <strong>Order Date: {{$data->tanggal_penjualan}}</strong><br>
                  <br><br>
                 </address>
               </div>
@@ -58,13 +81,15 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                   <th class="text-center">Jumlah Produk</th>
                   <th class="text-right">Total</th>
                 </tr>
+                @foreach ($detail_transaksi as $item)
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>
+                  <td>{{$loop->iteration}}</td>
+                  <td> {{$item->produk_name}}</td>
+                  <td class="text-center">{{$item->produk->harga}}</td>
+                  <td class="text-center">{{$item->qty}}</td>
+                  <td class="text-center">{{$item->subtotal}}</td>
                 </tr>
+                @endforeach
                
               </table>
             </div>
@@ -77,11 +102,18 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
               <div class="col-lg-4 text-right">
                 <div class="invoice-detail-item">
                   <div class="invoice-detail-name">Subtotal</div>
-                  <div class="invoice-detail-value"></div>
+                  <div class="invoice-detail-value">{{$data->total_harga}}</div>
                 </div>
                
             </div>
             </div>
+
+            <div class="d-flex-justify-content-end">
+              <div class="mt-5">
+                <a href="/Transaksi" class="btn btn-info no-print"><i class="fas fa-arrow-right"></i>Selesai</a>
+              </div>
+            </div>
+            
 
 <script type="text/javascript">
     window.print();

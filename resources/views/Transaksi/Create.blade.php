@@ -136,22 +136,27 @@
                             <th>subtotal</th>
                             <th>action</th>
                         </tr>
-                        @foreach ($detail as $item)
+                        @foreach ($detail_transaksi as $item)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$item->produk_name}}</td>
                             <td>{{$item->qty}}</td>
                             <td>{{$item->subtotal}}</td>
                             <td>
-                                <a href="" class="btn btn-danger">Hapus</a>
-                            </td>
+                                <form action="/transaksi/delete/{{$item->id}}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <div class="delete">
+                                      <button type="submit" class="btn btn-danger mt-2">Hapus</button>
+                                    </div>
+                                </form>                            </td>
                         </tr>
                         @endforeach
 
                         <hr>
                     </table>
 
-                    <a href="" class="btn btn-info"><i class="fas fa-arrow-right"></i>selanjutnya</a>
+                    <a href="/transaksi/print/{{$item->id}}" class="btn btn-info"><i class="fas fa-arrow-right"></i>selesai</a>
 
                 </div>
             </div>

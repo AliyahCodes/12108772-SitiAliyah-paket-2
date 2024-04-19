@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Pelanggan;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Auth\User;
 
@@ -25,6 +26,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'role' => 1,
             'password' => bcrypt('aliyah'),
+        ]);
+
+        Pelanggan::create([
+            'nama_pelanggan'=> 'Azura',
+            'alamat' => 'Jakarta',
+            'telepon' => '08975345787',
         ]);
     }
 }

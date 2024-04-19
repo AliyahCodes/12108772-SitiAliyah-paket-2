@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Produk;
 use App\Models\Pelanggan;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Models\DetailTransaksi;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
 {
@@ -16,8 +18,18 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $data = Transaksi::with(['pelanggan', 'user'])->get();
-        return view('Transaksi.Transaksi', compact('data'));
+        // $query = Produk::query();
+
+        // // Filter berdasarkan nama kasir
+        // if ($request->has('name')) {
+        //     $query->where('name', $request->name);
+        // }
+        // $data = $query->get();
+        $data = Transaksi::with('pelanggan')->get();
+        $dt = DetailTransaksi::all();
+        $user = User::all();
+
+        return view('Transaksi.Transaksi', compact('data', 'dt', 'user'));
     }
 
     /**
@@ -68,40 +80,40 @@ class TransaksiController extends Controller
         $produk = Produk::get();
         $pelanggan = Pelanggan::get();
 
-        $detail = DetailTransaksi::whereTransaksiId($id)->get();
+        $pelanggan_id = request('pelanggan_id');
+        $pl = Pelanggan::find($pelanggan_id); 
 
-        $produk_id = $request['produk_id'];
-        $p_detail = Produk::find($produk_id);
+        $produk_id = request('produk_id');
+        $p_detail = Produk::find($produk_id);   
 
-        $pelanggan_id = $request['pelanggan_id'];
-        $pl = Pelanggan::find($pelanggan_id);
+        $detail_transaksi = DetailTransaksi::whereTransaksiId($id)->get();
 
         $act = request('act');
-        $qty =request('qty');
-            if($qty == 'min'){
-                if($qty <= 1){
+        $qty = request('qty');
+            if($act == 'min'){
+                if($qty <= 1) {
                     $qty = 1;
-                }else {
+                } else {
                     $qty = $qty - 1;
                 }
             }else {
-
                 $qty = $qty + 1;
             }
 
             $subtotal = 0;
-                if($p_detail) {
-                    $subtotal = $qty * $p_detail->harga;
-                }
+            if($p_detail) {
+                $subtotal = $qty * $p_detail->harga;
+            }
 
-        return view('Transaksi.Create', compact('produk', 'p_detail','pelanggan','pl', 'qty', 'subtotal', 'detail'));
+        return view('Transaksi.Create', compact('produk', 'p_detail', 'qty', 'subtotal', 'detail_transaksi', 'pelanggan', 'pl'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Transaksi $transaksi)
+    public function destroy(Transaksi $transaksi, $id)
     {
-        //
+        $tr = Transaksi::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Berhasil Menghapus Data!');
     }
 }

@@ -21,7 +21,7 @@ class AuthController extends Controller
 
         $user = $request->only('email', 'password');
             if(Auth::attempt($user)){
-                if(auth()->user()->role == 1){
+                if(auth()->user()->role != 2){
                     return redirect('dashboard');
                 } else {
                     return redirect('staf');

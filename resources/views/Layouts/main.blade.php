@@ -62,7 +62,7 @@
               <a href="index.html">Kasir</a>
             </div>
             <ul class="sidebar-menu">
-              @if (Auth::user()->role == 1) 
+              @if (Auth::user()->role != 2) 
                   
               <li class="menu-header">Dashboard</li>
               <li class="dropdown">

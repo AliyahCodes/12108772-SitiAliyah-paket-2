@@ -84,20 +84,21 @@ class ProdukController extends Controller
         ]);
 
         $newName = '';
-        if($request->file('cover')){
+        if($request->file('cover')) {
             $extension = $request->file('cover')->getClientOriginalExtension();
             $newName = $request->nama_produk.'-'.now()->timestamp.'.'.$extension;
             $request->file('cover')->storeAs('image', $newName);
-            $request['image'] = $newName;
-        }
-
-        Produk::where('id','-', $id)->update([
+            $request['cover'] = $newName;
+         }
+        
+        Produk::where('id' , $id)->update([
             'nama_produk' => $request->nama_produk,
-            'harga'=> $request->harga,
-            'image'=> $newName,
+            'harga' => $request->harga,
+            'image' => $newName,        
         ]);
-
-        return redirect('/Produk')->with('success', 'Berhasil Menambahkan data baru!');
+        
+        return redirect('/Produk')->with('succes', 'Berhasil memperbarui data');
+        
     
     }
 

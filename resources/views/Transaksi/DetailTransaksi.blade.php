@@ -1,11 +1,18 @@
 @extends('layouts.main')
 
-@section('title', 'Invoice')
-@section('text', 'Detail transaksi')
+@section('title', 'Dashboard User')
 
 @section('content')
 
+<div class="main-content">
     <section class="section">
+      <div class="section-header">
+        <h1>Invoice</h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+          <div class="breadcrumb-item">Invoice</div>
+        </div>
+      </div>
 
       <div class="section-body">
         <div class="invoice">
@@ -58,13 +65,15 @@
                       <th class="text-center">Jumlah Produk</th>
                       <th class="text-right">Total</th>
                     </tr>
+                    @foreach ($data as $item)
                     <tr>
-                      <td></td>
-                      <td> </td>
-                      <td class="text-center"></td>
-                      <td class="text-center"></td>
-                      <td class="text-center"></td>
+                      <td>{{$loop->iteration}}</td>
+                      <td> {{$item->produk_name}}</td>
+                      <td class="text-center">{{format_rupiah ($item->produk->harga)}}</td>
+                      <td class="text-center">{{$item->qty}}</td>
+                      <td class="text-center">{{format_rupiah ($item->subtotal)}}</td>
                     </tr>
+                    @endforeach
                    
                   </table>
                 </div>
@@ -77,7 +86,7 @@
                   <div class="col-lg-4 text-right">
                     <div class="invoice-detail-item">
                       <div class="invoice-detail-name">Subtotal</div>
-                      <div class="invoice-detail-value"></div>
+                      <div class="invoice-detail-value">{{format_rupiah( $penjualan->TotalHarga)}}</div>
                     </div>
                    
                   
@@ -95,7 +104,10 @@
         </div>
       </div>
     </section>
+  </div>
  
+</div>
+</div>
 
 
     
